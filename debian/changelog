@@ -1,6 +1,7 @@
 django-nose (1.2-1pexip1) pexip; urgency=low
 
   * Prepare Pexip packaging
+  * debian/control: Remove Build-Depends on dh-python
 
  -- John-Mark Bell <jmb@pexip.com>  Mon, 19 May 2014 18:55:00 +0000
 
