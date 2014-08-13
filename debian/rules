@@ -1,11 +1,13 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
+export PYBUILD_NAME=django-nose
+
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
 %:
-	dh $@ --with=python2
+	dh $@ --with=python2,python3 --buildsystem=pybuild
 
 .PHONY: override_dh_auto_test
 override_dh_auto_test:
@@ -14,9 +16,7 @@ ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
 	for python in $(shell pyversions -r); do \
 	  PYTHON=$$python ./runtests.sh; \
 	done
+	for python in $(shell py3versions -r); do \
+	  PYTHON=$$python ./runtests.sh; \
+	done
 endif
-
-.PHONY: override_dh_auto_install
-override_dh_auto_install:
-	dh_auto_install
-	sed -i 's/Metadata-Version: 1\.0/Metadata-Version: 1\.1/' debian/python-django-nose/usr/lib/python2.*/*-packages/django_nose-*.egg-info/PKG-INFO
