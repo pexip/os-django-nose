@@ -6,6 +6,7 @@ XSBC-Pexip-Original-Maintainer: Debian Python Modules Team <python-modules-team@
 XSBC-Pexip-Original-Uploaders: Michael Fladischer <FladischerMichael@fladi.at>,
  Brian May <bam@debian.org>
 Build-Depends: debhelper (>= 8.1.0~),
+               dh-python,
                python-all,
                python-django,
                python-nose,
