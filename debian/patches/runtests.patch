@@ -8,8 +8,10 @@ Author: Michael Fladischer <FladischerMichael@fladi.at>
 Last-Update: 2011-11-26
 Forwarded: no
 
---- a/runtests.sh
-+++ b/runtests.sh
+Index: django-nose/runtests.sh
+===================================================================
+--- django-nose.orig/runtests.sh	2013-07-24 03:23:04.000000000 +1000
++++ django-nose/runtests.sh	2014-08-13 13:22:41.531346643 +1000
 @@ -1,6 +1,9 @@
  #!/bin/sh
  
@@ -20,7 +22,7 @@ Forwarded: no
  
  django_test() {
      TEST="$1"
-@@ -25,9 +28,8 @@
+@@ -25,9 +28,7 @@
      fi
  }
  
@@ -31,7 +33,6 @@ Forwarded: no
 -django_test 'django-admin.py test --settings=testapp.settings_with_plugins testapp/plugin_t' '1' 'with plugins'
 -django_test 'django-admin.py test --settings=testapp.settings unittests' '4' 'unittests'
 +django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings" '2' 'normal settings'
-+django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings_with_south" '2' 'with south in installed apps'
 +django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings_old_style" '2' 'django_nose.run_tests format'
 +django_test "$PYTHON testapp/runtests.py testapp.test_only_this" '1' 'via run_tests API'
 +django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings_with_plugins testapp/plugin_t" '1' 'with plugins'

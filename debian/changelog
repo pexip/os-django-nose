@@ -1,3 +1,16 @@
+django-nose (1.2-2pexip1) pexip; urgency=low
+
+  * New upstream release.
+
+ -- John-Mark Bell <jmb@pexip.com>  Tue, 02 Sep 2014 22:13:26 +0100
+
+django-nose (1.2-2) unstable; urgency=low
+
+  * Python 3 package.
+  * Disable django-south in tests. Closes: #755665.
+
+ -- Brian May <bam@debian.org>  Wed, 13 Aug 2014 13:15:21 +1000
+
 django-nose (1.2-1pexip1) pexip; urgency=low
 
   * Prepare Pexip packaging
