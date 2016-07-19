@@ -2,10 +2,11 @@ Source: django-nose
 Section: python
 Priority: optional
 Maintainer: Debian Python Modules Team <python-modules-team@lists.alioth.debian.org>
-Uploaders: Michael Fladischer <FladischerMichael@fladi.at>,
- Brian May <bam@debian.org>
-Build-Depends: debhelper (>= 8.1.0~),
+Uploaders: Michael Fladischer <fladi@debian.org>,
+           Brian May <bam@debian.org>,
+Build-Depends: debhelper (>= 9),
                dh-python,
+               gawk,
                python-all,
                python-django,
                python-nose,
@@ -13,16 +14,18 @@ Build-Depends: debhelper (>= 8.1.0~),
                python3-all,
                python3-django,
                python3-nose,
-               python3-setuptools
-Standards-Version: 3.9.5
-X-Python-Version: >= 2.5
-Homepage: http://pypi.python.org/pypi/django-nose/
-Vcs-Svn: svn://anonscm.debian.org/python-modules/packages/django-nose/trunk/
-Vcs-Browser: http://anonscm.debian.org/viewvc/python-modules/packages/django-nose/trunk/
+               python3-setuptools,
+Standards-Version: 3.9.8
+X-Python-Version: >= 2.7
+X-Python3-Version: >= 3.3
+Homepage: https://pypi.python.org/pypi/django-nose/
+Vcs-Git: https://anonscm.debian.org/git/python-modules/packages/django-nose.git
+Vcs-Browser: https://anonscm.debian.org/cgit/python-modules/packages/django-nose.git
 
 Package: python-django-nose
 Architecture: all
-Depends: python-django, python-nose, ${misc:Depends}, ${python:Depends}
+Depends: ${misc:Depends},
+         ${python:Depends},
 Description: Django test runner that uses python-nose
  python-django-nose integrates python-nose into Django test runner by
  extending the Django management CLI with nose-related options.
@@ -31,9 +34,12 @@ Description: Django test runner that uses python-nose
 
 Package: python3-django-nose
 Architecture: all
-Depends: python-django, python-nose, ${misc:Depends}, ${python:Depends}
-Description: Django test runner that uses python-nose
+Depends: ${misc:Depends},
+         ${python3:Depends},
+Description: Django test runner that uses python-nose (Python3 version)
  python-django-nose integrates python-nose into Django test runner by
  extending the Django management CLI with nose-related options.
  Those options are targeted at running nose tests directly from within the
  Django management system (e.g. django-admin).
+ .
+ This package contains the Python 3 version of the library.

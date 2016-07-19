@@ -1,3 +1,78 @@
+django-nose (1.4.4-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed homepage (https)
+
+  [ Thomas Goirand ]
+  * Team upload.
+  * New upstream release:
+    - Has compat for Django 1.10 (Closes: #828652).
+    - Rebased patches.
+  * Standards-Version: 3.9.8 (no change).
+  * Added a debian/gbp.conf.
+  * Ran wrap-and-sort -t -a.
+  * Added extend-diff-ignore = "^[^/]*[.]egg-info/" in d/s/options.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 19 Jul 2016 11:59:11 +0000
+
+django-nose (1.4.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * Add patch to disable tests that use REUSE_DB as they are broken.
+
+ -- Michael Fladischer <fladi@debian.org>  Thu, 07 Jan 2016 13:03:39 +0100
+
+django-nose (1.4.2-2) unstable; urgency=medium
+
+  * Fix python3 depends. Closes: #803005.
+
+ -- Brian May <bam@debian.org>  Mon, 26 Oct 2015 09:48:11 +1100
+
+django-nose (1.4.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh runtests.patch.
+  * Add 0003-Remove-unnecessary-dependency-on-dj_database_url.patch to remove
+    test dependency on dj_database_url module.
+  * Bump debhelper compatibility and version to 9.
+  * Initialize git-dpm.
+  * Update Vcs fields for git migration.
+
+ -- Michael Fladischer <fladi@debian.org>  Fri, 16 Oct 2015 16:45:04 +0200
+
+django-nose (1.4.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Fladischer <fladi@debian.org>  Mon, 06 Jul 2015 11:00:42 +0200
+
+django-nose (1.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Use github repository for uscan.
+  * Bump Standards-Version to 3.9.6.
+  * Add gawk to Build-Depends because it is required by runtests.sh.
+  * Refresh runtests.patch.
+  * Use correct Python version to determine tests to run in
+    runtests.patch.
+  * Remove PHONY target declarations from d/rules.
+  * Use only one for loop to run the tests for all requested Python versions.
+  * Use distinctive description for python3 package.
+  * Line-wrap Depends fields for easier reading.
+  * Add X-Python3-Version for versions => 3.3.
+  * Add DEP3 header to django17.patch.
+  * Change my email address to fladi@debian.org.
+
+ -- Michael Fladischer <fladi@debian.org>  Tue, 19 May 2015 08:41:05 +0200
+
+django-nose (1.2-3) unstable; urgency=low
+
+  * Fix Django 1.7 AppRegistryNotReady error, by calling django.setup() in
+    tests. Closes: #763252.
+
+ -- Brian May <bam@debian.org>  Mon, 29 Sep 2014 11:40:22 +1000
+
 django-nose (1.2-2) unstable; urgency=low
 
   * Python 3 package.

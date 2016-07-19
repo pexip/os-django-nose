@@ -9,14 +9,5 @@ export PYBUILD_NAME=django-nose
 %:
 	dh $@ --with=python2,python3 --buildsystem=pybuild
 
-.PHONY: override_dh_auto_test
 override_dh_auto_test:
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	set -e; \
-	for python in $(shell pyversions -r); do \
-	  PYTHON=$$python ./runtests.sh; \
-	done
-	for python in $(shell py3versions -r); do \
-	  PYTHON=$$python ./runtests.sh; \
-	done
-endif
+	dh_auto_test -- --system=custom --test-args="PYTHON={interpreter} ./runtests.sh"

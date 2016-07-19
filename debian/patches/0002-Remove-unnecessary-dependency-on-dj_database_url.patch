@@ -1,0 +1,39 @@
+From bffa9ec7a6e02c8b1662bfabd31f952d971e4a3f Mon Sep 17 00:00:00 2001
+From: Michael Fladischer <FladischerMichael@fladi.at>
+Date: Fri, 16 Oct 2015 12:26:16 +0200
+Subject: Remove unnecessary dependency on dj_database_url.
+
+Importing dj_database_url for a simple test application is not necessary,
+replace the static database configuration with a defautl one from Django.
+---
+ testapp/settings.py | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
+
+diff --git a/testapp/settings.py b/testapp/settings.py
+index 51a157f..1f23cdd 100644
+--- a/testapp/settings.py
++++ b/testapp/settings.py
+@@ -11,19 +11,13 @@ NOSE_PLUGINS - Comma-separated list of plugins to add
+ from __future__ import print_function
+ from os import environ, path
+ 
+-import dj_database_url
+-
+ BASE_DIR = path.dirname(path.dirname(__file__))
+ 
+-
+-def rel_path(*subpaths):
+-    """Construct the full path given a relative path."""
+-    return path.join(BASE_DIR, *subpaths)
+-
+ DATABASES = {
+-    'default':
+-        dj_database_url.config(
+-            default='sqlite:///' + rel_path('testapp.sqlite3'))
++    'default': {
++        'ENGINE': 'django.db.backends.sqlite3',
++        'NAME': path.join(BASE_DIR, 'testapp.sqlite3'),
++    }
+ }
+ 
+ MIDDLEWARE_CLASSES = ()

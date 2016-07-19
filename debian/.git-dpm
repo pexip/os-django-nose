@@ -1,0 +1,11 @@
+# see git-dpm(1) from git-dpm package
+805d34fb894946b64255c5e38c50a46e122770b9
+805d34fb894946b64255c5e38c50a46e122770b9
+99d0c63b56756d6b0f1d83e1d827158fa6493b02
+99d0c63b56756d6b0f1d83e1d827158fa6493b02
+django-nose_1.4.4.orig.tar.gz
+0201d22380ac6b801ce2710c6a0c693a0cf1ce71
+44266
+debianTag="debian/%e%v"
+patchedTag="patched/%e%v"
+upstreamTag="upstream/%e%u"
