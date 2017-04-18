@@ -1,38 +1,95 @@
-Description: Enable non-default python versions for test runs
- The original version of runtests.sh only allows to run the tests on the current 
- default python version. This patch add the environment variable PYTHON that can 
+From 538108c0dc1cdaf50c6b7a22edbcadb51e39eb10 Mon Sep 17 00:00:00 2001
+From: Michael Fladischer <fladi@debian.org>
+Date: Thu, 8 Oct 2015 08:54:28 -0700
+Subject: Enable non-default python versions for test runs
+
+ The original version of runtests.sh only allows to run the tests on the current
+ default python version. This patch add the environment variable PYTHON that can
  be set to a specific python binary (e.g. python2.6) to run the tests with.
- It also changes the path for django-admin.py to the one supplied by the 
+ It also changes the path for django-admin.py to the one supplied by the
  python-django package.
-Author: Michael Fladischer <FladischerMichael@fladi.at>
 Last-Update: 2011-11-26
 Forwarded: no
 
-Index: django-nose/runtests.sh
-===================================================================
---- django-nose.orig/runtests.sh	2013-07-24 03:23:04.000000000 +1000
-+++ django-nose/runtests.sh	2014-08-13 13:22:41.531346643 +1000
-@@ -1,6 +1,9 @@
- #!/bin/sh
+Patch-Name: runtests.patch
+---
+ runtests.sh | 31 ++++++++++++++++++-------------
+ 1 file changed, 18 insertions(+), 13 deletions(-)
+
+diff --git a/runtests.sh b/runtests.sh
+index da6ee27..d072fa3 100755
+--- a/runtests.sh
++++ b/runtests.sh
+@@ -36,8 +36,13 @@ then
+ fi
  
  export PYTHONPATH=.
 +if [ -z $PYTHON ]; then
 +    export PYTHON=python
 +fi
++
++export DJANGO_SETTINGS_MODULE=testapp.settings
  
- django_test() {
-     TEST="$1"
-@@ -25,9 +28,7 @@
-     fi
- }
+-HAS_HOTSHOT=$(python -c "\
++HAS_HOTSHOT=$($PYTHON -c "\
+ try:
+   import hotshot
+ except ImportError:
+@@ -146,45 +151,45 @@ django_test() {
+ TESTAPP_COUNT=6
  
--django_test 'django-admin.py test --settings=testapp.settings' '2' 'normal settings'
--django_test 'django-admin.py test --settings=testapp.settings_with_south' '2' 'with south in installed apps'
--django_test 'django-admin.py test --settings=testapp.settings_old_style' '2' 'django_nose.run_tests format'
--django_test 'testapp/runtests.py testapp.test_only_this' '1' 'via run_tests API'
--django_test 'django-admin.py test --settings=testapp.settings_with_plugins testapp/plugin_t' '1' 'with plugins'
--django_test 'django-admin.py test --settings=testapp.settings unittests' '4' 'unittests'
-+django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings" '2' 'normal settings'
-+django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings_old_style" '2' 'django_nose.run_tests format'
-+django_test "$PYTHON testapp/runtests.py testapp.test_only_this" '1' 'via run_tests API'
-+django_test "$PYTHON /usr/bin/django-admin test --settings=testapp.settings_with_plugins testapp/plugin_t" '1' 'with plugins'
+ reset_env
+-django_test "./manage.py test $NOINPUT" $TESTAPP_COUNT 'normal settings'
++django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'normal settings'
+ 
+ reset_env
+ export TEST_RUNNER="django_nose.NoseTestSuiteRunner"
+-django_test "./manage.py test $NOINPUT" $TESTAPP_COUNT 'test runner from environment'
++django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'test runner from environment'
+ 
+ reset_env
+-django_test "testapp/runtests.py testapp.test_only_this" 1 'via run_tests API'
++django_test "$PYTHON testapp/runtests.py testapp.test_only_this" 1 'via run_tests API'
+ 
+ reset_env
+ export NOSE_PLUGINS="testapp.plugins.SanityCheckPlugin"
+-django_test "./manage.py test testapp/plugin_t $NOINPUT" 1 'with plugins'
++django_test "$PYTHON /usr/bin/django-admin test testapp/plugin_t $NOINPUT" 1 'with plugins'
+ 
+ reset_env
+-django_test "./manage.py test unittests $NOINPUT" 4 'unittests'
++django_test "$PYTHON /usr/bin/django-admin test unittests $NOINPUT" 4 'unittests'
+ 
+ reset_env
+-django_test "./manage.py test unittests --verbosity 1 $NOINPUT" 4 'argument option without equals'
++django_test "$PYTHON /usr/bin/django-admin test unittests --verbosity 1 $NOINPUT" 4 'argument option without equals'
+ 
+ reset_env
+-django_test "./manage.py test unittests --nose-verbosity=2 $NOINPUT" 4 'argument with equals'
++django_test "$PYTHON /usr/bin/django-admin test unittests --nose-verbosity=2 $NOINPUT" 4 'argument with equals'
+ 
+ reset_env
+-django_test "./manage.py test unittests --testrunner=testapp.custom_runner.CustomNoseTestSuiteRunner $NOINPUT" 4 'unittests with testrunner'
++django_test "$PYTHON /usr/bin/django-admin test unittests --testrunner=testapp.custom_runner.CustomNoseTestSuiteRunner $NOINPUT" 4 'unittests with testrunner'
+ 
+ reset_env
+-django_test "./manage.py test unittests --attr special $NOINPUT" 1 'select by attribute'
++django_test "$PYTHON /usr/bin/django-admin test unittests --attr special $NOINPUT" 1 'select by attribute'
+ 
+ reset_env
+ export REUSE_DB=1
+ # For the many issues with REUSE_DB=1, see:
+ # https://github.com/django-nose/django-nose/milestones/Fix%20REUSE_DB=1
+-django_test "./manage.py test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #1' 'can fail'
+-django_test "./manage.py test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #2' 'can fail'
++django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #1' 'can fail'
++django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #2' 'can fail'
+ 
+ 
+ if [ "$HAS_HOTSHOT" = "1" ]
+ then
+     # Python 3 doesn't support the hotshot profiler. See nose#842.
+     reset_env
+-    django_test "./manage.py test $NOINPUT --with-profile --profile-restrict less_output" $TESTAPP_COUNT 'with profile plugin'
++    django_test "$PYTHON /usr/bin/django-admin test $NOINPUT --with-profile --profile-restrict less_output" $TESTAPP_COUNT 'with profile plugin'
+ fi

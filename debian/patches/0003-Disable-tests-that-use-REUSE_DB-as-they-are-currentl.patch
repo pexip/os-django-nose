@@ -1,0 +1,31 @@
+From 805d34fb894946b64255c5e38c50a46e122770b9 Mon Sep 17 00:00:00 2001
+From: Michael Fladischer <FladischerMichael@fladi.at>
+Date: Thu, 7 Jan 2016 13:02:24 +0100
+Subject: Disable tests that use REUSE_DB as they are currently broken.
+
+Bug-Vendor: https://github.com/django-nose/django-nose/milestones/Fix%20REUSE_DB=1
+---
+ runtests.sh | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/runtests.sh b/runtests.sh
+index d072fa3..588c46c 100755
+--- a/runtests.sh
++++ b/runtests.sh
+@@ -179,12 +179,12 @@ django_test "$PYTHON /usr/bin/django-admin test unittests --testrunner=testapp.c
+ reset_env
+ django_test "$PYTHON /usr/bin/django-admin test unittests --attr special $NOINPUT" 1 'select by attribute'
+ 
+-reset_env
+-export REUSE_DB=1
++#reset_env
++#export REUSE_DB=1
+ # For the many issues with REUSE_DB=1, see:
+ # https://github.com/django-nose/django-nose/milestones/Fix%20REUSE_DB=1
+-django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #1' 'can fail'
+-django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #2' 'can fail'
++#django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #1' 'can fail'
++#django_test "$PYTHON /usr/bin/django-admin test $NOINPUT" $TESTAPP_COUNT 'with REUSE_DB=1, call #2' 'can fail'
+ 
+ 
+ if [ "$HAS_HOTSHOT" = "1" ]

@@ -1,1 +1,3 @@
 runtests.patch
+0002-Remove-unnecessary-dependency-on-dj_database_url.patch
+0003-Disable-tests-that-use-REUSE_DB-as-they-are-currentl.patch
