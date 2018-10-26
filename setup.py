@@ -34,9 +34,10 @@ _(Older changes can be found in the full documentation)._
 """ % locals()
     return long_description
 
+
 setup(
     name='django-nose',
-    version='1.4.4',
+    version='1.4.6',
     description='Makes your Django tests simple and snappy',
     long_description=get_long_description('django-nose'),
     author='Jeff Balogh',
@@ -65,6 +66,12 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
         'Framework :: Django',
+        'Framework :: Django :: 1.8',
+        'Framework :: Django :: 1.9',
+        'Framework :: Django :: 1.10',
+        'Framework :: Django :: 1.11',
+        'Framework :: Django :: 2.0',
+        'Framework :: Django :: 2.1',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Operating System :: OS Independent',
@@ -75,6 +82,8 @@ setup(
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Software Development :: Testing'
     ]
 )

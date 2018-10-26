@@ -1,9 +1,8 @@
-From 538108c0dc1cdaf50c6b7a22edbcadb51e39eb10 Mon Sep 17 00:00:00 2001
 From: Michael Fladischer <fladi@debian.org>
 Date: Thu, 8 Oct 2015 08:54:28 -0700
 Subject: Enable non-default python versions for test runs
 
- The original version of runtests.sh only allows to run the tests on the current
+ The original version of runtests.sh only allows running the tests on the current
  default python version. This patch add the environment variable PYTHON that can
  be set to a specific python binary (e.g. python2.6) to run the tests with.
  It also changes the path for django-admin.py to the one supplied by the

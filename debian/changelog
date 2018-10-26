@@ -1,3 +1,36 @@
+django-nose (1.4.6-1) unstable; urgency=low
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/control: Remove ancient X-Python-Version field
+  * d/control: Remove ancient X-Python3-Version field
+
+  [ Michael Fladischer ]
+  * New upstream release.
+  * Refresh patches.
+  * Enable autopkgtest-pkg-python testsuite.
+  * Bump debhelper compatibility and version to 11.
+  * Bump Standards-Version to 4.2.1.
+  * Run wrap-and-sort -bast to reduce diff size of future changes.
+  * Install README.rst in both binary packages.
+
+ -- Michael Fladischer <fladi@debian.org>  Fri, 26 Oct 2018 16:16:38 +0200
+
+django-nose (1.4.5-1) unstable; urgency=low
+
+  [ Thomas Goirand ]
+  * Refresh patches after git-dpm to gbp pq conversion
+
+  [ Michael Fladischer ]
+  * New upstream release.
+  * Refresh patches for 1.4.5.
+  * Bump Standards-Version to 4.1.1.
+  * Add python(3)-django to Depends.
+  * Use https:// for copyright-format 1.0 URL.
+  * Add patch to prevent installation of testapp package.
+
+ -- Michael Fladischer <fladi@debian.org>  Tue, 17 Oct 2017 20:33:20 +0200
+
 django-nose (1.4.4-1) unstable; urgency=medium
 
   [ Ondřej Nový ]
