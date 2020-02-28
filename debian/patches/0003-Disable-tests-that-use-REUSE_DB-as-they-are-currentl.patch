@@ -1,4 +1,3 @@
-From 805d34fb894946b64255c5e38c50a46e122770b9 Mon Sep 17 00:00:00 2001
 From: Michael Fladischer <FladischerMichael@fladi.at>
 Date: Thu, 7 Jan 2016 13:02:24 +0100
 Subject: Disable tests that use REUSE_DB as they are currently broken.

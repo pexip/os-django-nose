@@ -1,10 +1,19 @@
 Changelog
 ---------
 
+1.4.6 (2018-10-03)
+~~~~~~~~~~~~~~~~~~
+* Document Django 2.0 and 2.1 support, no changes needed
+* Document Python 3.7 support
+
+1.4.5 (2017-08-22)
+~~~~~~~~~~~~~~~~~~
+* Add Django 1.11 support
+
 1.4.4 (2016-06-27)
 ~~~~~~~~~~~~~~~~~~
 * Add Django 1.10 support
-* Drop Django 1.4, 1.7, and Python 2.6 support
+* Drop Django 1.4 - 1.7, and Python 2.6 support
 * Drop South support
 
 1.4.3 (2015-12-28)
